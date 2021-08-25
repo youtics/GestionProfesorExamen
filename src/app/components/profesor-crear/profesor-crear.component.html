@@ -1,0 +1,32 @@
+<div class="container mt-3">
+    <form class="row g-3" [formGroup]="form">
+        <div class="col-md-3">
+        <label for="inputLegajo" class="form-label">Legajo</label>
+        <input type="text" class="form-control" id="inputLegajo" formControlName="legajo">
+        </div>
+        <div class="col-md-9">
+        <label for="inputApellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="inputApellido" formControlName="apellido">
+        </div>
+        <div class="col-8">
+        <label for="inputNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="inputNombre" formControlName="nombre" >
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">Sexo</label>
+            <select id="inputState" class="form-select" formControlName="sexo">
+                <option selected>Seleccione...</option>
+                <option>Maculino</option>
+                <option>Femenino</option>
+                <option>No definido</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="inputMateria" class="form-label">Materia</label>
+            <input type="text" class="form-control" id="inputMateria" formControlName="materia">
+        </div>
+        <div class="col-12">
+        <button type="submit" class="btn btn-primary" (click) = "agregarProfesoralArray()" routerLink="/profesor-listar">Add Profesor</button>
+        </div>
+    </form>
+  </div>

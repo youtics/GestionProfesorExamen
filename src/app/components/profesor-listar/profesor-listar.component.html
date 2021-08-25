@@ -1,0 +1,33 @@
+<div class="container mt-3" >
+    <div class="card mt-3">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th >Legajo</th>
+                <th >Nombre</th>
+                <th >Apellido</th>
+                <th >Sexo</th>
+                <th>Materia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let profesor of dataService.listaDeServicio">
+                <tr>
+                  <td>{{ profesor.Legajo }}</td>
+                  <td>{{ profesor.Nombre }}</td>
+                  <td>{{ profesor.Apellido }}</td>
+                  <td>{{ profesor.Sexo }}</td>
+                  <td>{{ profesor.Materia }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" routerLink="/add-teacher">Volver</button>
+      </div>
+</div>
+
+
