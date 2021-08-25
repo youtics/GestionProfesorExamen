@@ -13,21 +13,19 @@ export class ProfesorCrearComponent implements OnInit {
 
   form:FormGroup;
 
-  listaDeProfesores: Profesor[] = [
-    { Legajo:1, Nombre:'Gabriel', Apellido:'Chaldu', Sexo:'Masculino', Materia:'Prog 1 y 2'},
-  ]
+  listaDeProfesores: Profesor[] = [];
 
   constructor(private formBuilder:FormBuilder, public data: DataService) { 
     this.form = this.formBuilder.group({
       legajo:['', [Validators.required]],
-      apellido:['', Validators.required],
-      nombre:['',Validators.required],
+      apellido:['', [Validators.pattern(/^[a-z ñ 'A-ZÑáéíóúÁÉÍÓÚ]+$/), Validators.required]],
+      nombre:['',[Validators.pattern(/^[a-z ñ 'A-ZÑáéíóúÁÉÍÓÚ]+$/), Validators.required]],
       sexo: ['', Validators.required],
-      materia:['', Validators.required]
+      materia:['', [Validators.pattern(/^[a-z ñ 'A-ZÑ0-9áéíóúÁÉÍÓÚ]+$/), Validators.required]]
     })
     this.listaDeProfesores=this.data.listaDeServicio;
   }
-
+  
   ngOnInit(): void {
   }
 

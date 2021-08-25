@@ -1,32 +1,51 @@
 <div class="container mt-3">
     <form class="row g-3" [formGroup]="form">
         <div class="col-md-3">
-        <label for="inputLegajo" class="form-label">Legajo</label>
-        <input type="text" class="form-control" id="inputLegajo" formControlName="legajo">
+            <label for="inputLegajo" class="form-label">Legajo</label>
+            <div class="input-group has-validation">
+                <input type="text" class="form-control" id="inputLegajo" formControlName="legajo"></div>
+                <div
+                    *ngIf="form.controls['legajo'].invalid && form.controls['legajo'].touched" class="alert alert-danger">Legajo requerid
+                </div>
         </div>
         <div class="col-md-9">
-        <label for="inputApellido" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="inputApellido" formControlName="apellido">
+            <label for="inputApellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="inputApellido" formControlName="apellido">
+                <div
+                    *ngIf="form.controls['apellido'].invalid && form.controls['apellido'].touched" class="alert alert-danger">Apellido requerid
+                </div>
         </div>
         <div class="col-8">
-        <label for="inputNombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="inputNombre" formControlName="nombre" >
+            <label for="inputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" formControlName="nombre" >
+                <div
+                    *ngIf="form.controls['nombre'].invalid && form.controls['nombre'].touched" class="alert alert-danger">Nombre requerid
+                </div>
         </div>
         <div class="col-md-4">
             <label for="inputState" class="form-label">Sexo</label>
             <select id="inputState" class="form-select" formControlName="sexo">
-                <option selected>Seleccione...</option>
-                <option>Maculino</option>
+                <option selected>Maculino</option>
                 <option>Femenino</option>
                 <option>No definido</option>
             </select>
+                <div
+                    *ngIf="form.controls['sexo'].invalid && form.controls['sexo'].touched" class="alert alert-danger">Sexo requerid
+                </div>
         </div>
         <div class="col-md-3">
             <label for="inputMateria" class="form-label">Materia</label>
             <input type="text" class="form-control" id="inputMateria" formControlName="materia">
+                <div
+                    *ngIf="form.controls['materia'].invalid && form.controls['materia'].touched" class="alert alert-danger">Materia requerid
+                </div>
         </div>
         <div class="col-12">
-        <button type="submit" class="btn btn-primary" (click) = "agregarProfesoralArray()" routerLink="/profesor-listar">Add Profesor</button>
+        <button type="submit" class="btn btn-primary" 
+            (click) = "agregarProfesoralArray()" 
+            routerLink="/profesor-listar"
+            [disabled] = "form.invalid"
+        >Add Profesor</button>
         </div>
     </form>
   </div>
