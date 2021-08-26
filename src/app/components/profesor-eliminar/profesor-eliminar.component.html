@@ -1,0 +1,22 @@
+<div class="container mt-3">
+  <div class="card mt-3">
+    <div class="card-body text-white bg-success">
+      <span class="h3">Eliminar Profesor</span>
+        <form class="row g-3" [formGroup]="form">
+            <div class="col-md-3">
+            <label for="inputLegajo" class="form-label">Legajo</label>
+            <input type="legajo" class="form-control" id="inputLegajo" formControlName = "legajo">
+            </div>
+            <div class="col-md-9">
+            <label for="inputApellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="inputApellido" formControlName = "apellido">
+            </div>    
+        </form>
+        <div class="col-12 mt-4">
+          <button type="submit" class="btn btn-primary" (click)="controladorEliminar()">Eliminar Empleados</button>
+        </div>
+    </div>
+  </div>
+</div>
+<app-profesor-listar></app-profesor-listar>
+

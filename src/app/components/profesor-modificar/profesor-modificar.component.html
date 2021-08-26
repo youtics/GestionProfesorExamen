@@ -1,12 +1,12 @@
 <div class="container mt-3">
     <div class="card mt-3">
         <div class="card-body text-white bg-success">
-            <span class="h3">Agregar Profesor</span>
+            <span class="h3">UPDATE Professor</span>
             <form class="row g-3" [formGroup]="form">
                 <div class="col-md-3">
                     <label for="inputLegajo" class="form-label">Legajo</label>
                     <div class="input-group has-validation">
-                        <input type="text" class="form-control" id="inputLegajo" formControlName="legajo"></div>
+                        <input type="text" class="form-control" id="inputLegajo" formControlName="legajo" (keyup)="completarBusqueda()"></div>
                         <div
                             *ngIf="form.controls['legajo'].invalid && form.controls['legajo'].touched" class="alert alert-danger">Legajo requerid
                         </div>
@@ -45,12 +45,41 @@
                 </div>
                 <div class="col-12">
                 <button type="submit" class="btn btn-primary" 
-                    (click) = "agregarProfesoralArray()" 
-                    routerLink="/profesor-listar"
+                    (click) = "modificar()"
                     [disabled] = "form.invalid"
-                >Add Profesor</button>
+                >Modificar Profesor</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<div class="container mt-3" >
+    <div class="card mt-3">
+        <div class="card-body text-white bg-success">
+          <span class="h3">Listado de Profesores</span>
+          <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th >Legajo</th>
+                <th >Nombre</th>
+                <th >Apellido</th>
+                <th >Sexo</th>
+                <th>Materia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let profesor of dataService.listaDeServicio">
+                <tr>
+                  <td>{{ profesor.Legajo }}</td>
+                  <td>{{ profesor.Nombre }}</td>
+                  <td>{{ profesor.Apellido }}</td>
+                  <td>{{ profesor.Sexo }}</td>
+                  <td>{{ profesor.Materia }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>
+
