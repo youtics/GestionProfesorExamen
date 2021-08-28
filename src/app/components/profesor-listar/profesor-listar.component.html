@@ -1,3 +1,4 @@
+<div class="body">
 <div class="container mt-3" >
     <div class="card mt-3">
         <div class="card-body text-white bg-success">
@@ -10,6 +11,7 @@
                 <th >Apellido</th>
                 <th >Sexo</th>
                 <th>Materia</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -20,12 +22,17 @@
                   <td>{{ profesor.Apellido }}</td>
                   <td>{{ profesor.Sexo }}</td>
                   <td>{{ profesor.Materia }}</td>
+                  <td>
+                    <i class="fas fa-user-edit fa-lg text-info" style="margin-right: 15px;" routerLink="/profesor-update"></i>
+                    <i class="fas fa-user-minus fa-lg text-danger" routerLink="/profesor-delete"></i>
+                  </td>
                 </tr>
               </ng-container>
             </tbody>
           </table>
         </div>
     </div>
+</div>
 </div>
 
 

@@ -9,6 +9,19 @@ import { ProfesorListarComponent } from './components/profesor-listar/profesor-l
 import { ProfesorEliminarComponent } from './components/profesor-eliminar/profesor-eliminar.component';
 import { ProfesorModificarComponent } from './components/profesor-modificar/profesor-modificar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+/**ANGULAR MATERIAL */
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { PreguntaCrearComponent } from './components/pregunta-crear/pregunta-crear.component'; 
 
 @NgModule({
   declarations: [
@@ -17,13 +30,25 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ProfesorListarComponent,
     ProfesorEliminarComponent,
     ProfesorModificarComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent,
+    MainNavComponent,
+    PreguntaCrearComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatIconModule,
+    MatTabsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

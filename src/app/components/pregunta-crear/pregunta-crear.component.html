@@ -1,0 +1,75 @@
+<div class="container mt-3">
+    <div class="card mt-3">
+        <div class="card-body text-white bg-success">
+            <span class="h3">Add Question and Answer</span>
+            <form class="row g-3" [formGroup]="form">
+                <div class="col-md-3">
+                    <label for="inputId" class="form-label">Id</label>
+                    <div class="input-group has-validation">
+                        <input type="text" class="form-control" id="inputId" formControlName="id"></div>
+                </div>
+                <div class="col-md-9">
+                    <label for="inputPregunta" class="form-label">Pregunta</label>
+                    <input type="text" class="form-control" id="inputPregunta" formControlName="pregunta">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" 
+                        (click) = "agregarPregunta()" 
+                    >Add Question</button>
+                    </div>
+                <div class="col-3">
+                    <label for="inputIdPregunta" class="form-label">Id de Pregunta</label>
+                    <input type="text" class="form-control" id="inputIdPregunta" formControlName="idPregunta" >
+                </div>
+                <div class="col-md-9">
+                    <label for="inputRespuesta" class="form-label">Respuesta</label>
+                    <input type="text" class="form-control" id="inputRespuesta" formControlName="respuesta">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputState" class="form-label">True or False</label>
+                    <select id="inputState" class="form-select" formControlName="esCorrecta">
+                        <option selected>Verdadero</option>
+                        <option>Falso</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                <button type="submit" class="btn btn-danger" 
+                    
+                    (click)="agregarRespuesta()"
+                >Add Answer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3" >
+    <div class="card mt-3">
+            <div class="card-body text-white bg-success">
+              <span class="h3">Listado de Preguntas</span>
+              <table class="table table-dark table-striped">
+                <ng-container  *ngFor="let pregunta of data.listaDePreguntas; let i = index" >
+                    <thead>
+                        <tr>
+                            <th>{{ pregunta.idPregunta }}</th>
+                            <th>{{ pregunta.descripcionPregunta }}</th>
+                            <th style="text-align: center">
+                                <i class="fas fa-user-edit fa-lg text-info" style="margin-right: 15px;" routerLink="/profesor-update"></i>
+                                <i class="fas fa-user-minus fa-lg text-danger" routerLink="/profesor-delete"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let respuesta of data.listaDePreguntas[i].respuestas; let z=index">
+                        <td>{{ respuesta.descripcionRespuesta }}</td>
+                        <td>{{ respuesta.esCorrecta }}</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </ng-container>
+            </table>
+            </div>
+        </div>
+    </div>
+    
+    

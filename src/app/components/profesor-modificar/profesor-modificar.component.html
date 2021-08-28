@@ -53,33 +53,5 @@
         </div>
     </div>
 </div>
-<div class="container mt-3" >
-    <div class="card mt-3">
-        <div class="card-body text-white bg-success">
-          <span class="h3">Listado de Profesores</span>
-          <table class="table table-dark table-striped">
-            <thead>
-              <tr>
-                <th >Legajo</th>
-                <th >Nombre</th>
-                <th >Apellido</th>
-                <th >Sexo</th>
-                <th>Materia</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let profesor of dataService.listaDeServicio">
-                <tr>
-                  <td>{{ profesor.Legajo }}</td>
-                  <td>{{ profesor.Nombre }}</td>
-                  <td>{{ profesor.Apellido }}</td>
-                  <td>{{ profesor.Sexo }}</td>
-                  <td>{{ profesor.Materia }}</td>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </div>
-    </div>
-</div>
+<app-profesor-listar></app-profesor-listar>
 
