@@ -2,28 +2,42 @@
     <div class="card mt-3">
         <div class="card-body text-white bg-success">
             <span class="h3">Add Question and Answer</span>
-            <form class="row g-3" [formGroup]="form">
+            <form class="row g-3" [formGroup]="formPregunta">
                 <div class="col-md-3">
                     <label for="inputId" class="form-label">Id</label>
                     <div class="input-group has-validation">
                         <input type="text" class="form-control" id="inputId" formControlName="id"></div>
-                </div>
+                        <div
+                            *ngIf="formPregunta.controls['id'].invalid && formPregunta.controls['id'].touched" class="alert alert-danger">Id requerid
+                        </div>
+                    </div>
                 <div class="col-md-9">
                     <label for="inputPregunta" class="form-label">Pregunta</label>
                     <input type="text" class="form-control" id="inputPregunta" formControlName="pregunta">
+                    <div
+                        *ngIf="formPregunta.controls['pregunta'].invalid && formPregunta.controls['pregunta'].touched" class="alert alert-danger">Pregunta requerid
+                    </div>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary" 
-                        (click) = "agregarPregunta()" 
-                    >Add Question</button>
-                    </div>
-                <div class="col-3">
-                    <label for="inputIdPregunta" class="form-label">Id de Pregunta</label>
-                    <input type="text" class="form-control" id="inputIdPregunta" formControlName="idPregunta" >
+                        (click) = "agregarPregunta()" [disabled] = "formPregunta.invalid" >Add Question</button>
+                </div>
+            </form>
+            <br>
+            <form class="row g-3" [formGroup]="formRespuesta">
+                <div class="col-md-3">
+                    <label for="inputState" class="form-label">Ids de Pregunta</label>
+                    <select id="inputState" class="form-select" formControlName="idPregunta">
+                        <option selected>Seleccionar</option>
+                        <option *ngFor="let idPregunta of data.listaDePreguntas" >{{idPregunta.idPregunta}}</option>
+                    </select>
                 </div>
                 <div class="col-md-9">
                     <label for="inputRespuesta" class="form-label">Respuesta</label>
                     <input type="text" class="form-control" id="inputRespuesta" formControlName="respuesta">
+                    <div
+                        *ngIf="formRespuesta.controls['respuesta'].invalid && formRespuesta.controls['respuesta'].touched" class="alert alert-danger">Respuesta requerid
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">True or False</label>
@@ -31,11 +45,13 @@
                         <option selected>Verdadero</option>
                         <option>Falso</option>
                     </select>
+                    <div
+                        *ngIf="formRespuesta.controls['esCorrecta'].invalid && formRespuesta.controls['esCorrecta'].touched" class="alert alert-danger">True or False requerid
+                    </div>
                 </div>
                 <div class="col-12">
-                <button type="submit" class="btn btn-danger" 
-                    
-                    (click)="agregarRespuesta()"
+                <button type="submit" class="btn btn-danger"                
+                    (click)="agregarRespuesta()" [disabled] = "formRespuesta.invalid"
                 >Add Answer</button>
                 </div>
             </form>
@@ -54,8 +70,8 @@
                             <th>{{ pregunta.idPregunta }}</th>
                             <th>{{ pregunta.descripcionPregunta }}</th>
                             <th style="text-align: center">
-                                <i class="fas fa-user-edit fa-lg text-info" style="margin-right: 15px;" routerLink="/profesor-update"></i>
-                                <i class="fas fa-user-minus fa-lg text-danger" routerLink="/profesor-delete"></i>
+                                <i class="far fa-pen-square fa-lg text-info" style="margin-right: 15px;"></i>
+                                <i class="far fa-trash-restore-alt fa-lg text-danger"></i>
                             </th>
                         </tr>
                     </thead>
@@ -63,7 +79,10 @@
                     <tr *ngFor="let respuesta of data.listaDePreguntas[i].respuestas; let z=index">
                         <td>{{ respuesta.descripcionRespuesta }}</td>
                         <td>{{ respuesta.esCorrecta }}</td>
-                        <td></td>
+                        <td style="text-align: center">
+                            <i (click)="eliminarRespuesta(data.listaDePreguntas[i].respuestas, respuesta.descripcionRespuesta)" class="fas fa-trash-restore-alt fa-lg text-danger" style="margin-right: 15px;"></i>
+                            <i class="fas fa-pen-square text-info fa-lg"></i>
+                        </td>
                     </tr>
                     </tbody>
                 </ng-container>

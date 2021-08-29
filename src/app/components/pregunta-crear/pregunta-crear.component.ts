@@ -11,12 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreguntaCrearComponent implements OnInit {
 
-  form:FormGroup;
+  formPregunta:FormGroup;
+  formRespuesta:FormGroup;
   lista:Pregunta[]=[];
   constructor(private fb: FormBuilder, public data: DataService) { 
-    this.form = this.fb.group({
+    this.formPregunta = this.fb.group({
       id:[, Validators.required],
       pregunta:['', Validators.required],
+    })
+    this.formRespuesta = this.fb.group({
       idPregunta:['', Validators.required],
       respuesta:['', Validators.required],
       esCorrecta: ['', Validators.required]
@@ -25,46 +28,40 @@ export class PreguntaCrearComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.data.listaDePreguntas = this.lista;
   }
 
-  recorrerMostrarLista()
-  {
-    var i:number=0;
-    for(i=0;i<this.lista.length;i++)
-    {
-
-    }
-  }
   agregarPregunta():Pregunta
   {
     const arregloRespuesta: any [] = [];
     const pregunta:Pregunta = {
-      idPregunta: this.form.get('id')?.value,
-      descripcionPregunta: this.form.get('pregunta')?.value,
+      idPregunta: this.formPregunta.get('id')?.value,
+      descripcionPregunta: this.formPregunta.get('pregunta')?.value,
       respuestas: arregloRespuesta
     }
     this.data.listaDePreguntas.push(pregunta);
     this.lista = this.data.listaDePreguntas;
-    this.Limpiar();
+    this.LimpiarPregunta();
     return pregunta;
   }
   agregarRespuesta()
   {
-    const posicion = this.buscarPregunta(this.form.get('idPregunta')?.value);
+    const posicion = this.buscarPregunta(this.formRespuesta.get('idPregunta')?.value);
     console.log("Id: " + posicion);
     const respuesta:Respuesta = {
       idPregunta: posicion,
-      descripcionRespuesta: this.form.get('respuesta')?.value,
+      descripcionRespuesta: this.formRespuesta.get('respuesta')?.value,
       esCorrecta: this.VoF()
     }
-    this.data.listaDePreguntas[posicion].respuestas.push(respuesta);
-    this.lista = this.data.listaDePreguntas;
+    this.lista[posicion].respuestas.push(respuesta);
+    this.data.listaDePreguntas = this.lista;
+    this.LimpiarRespuesta();
   }
 
   VoF():boolean
   {
-    console.log("Que:  " + this.form.get('esCorrecta')?.value);
-    if(this.form.get('esCorrecta')?.value === 'Verdadero')
+    console.log("Que:  " + this.formRespuesta.get('esCorrecta')?.value);
+    if(this.formRespuesta.get('esCorrecta')?.value === 'Verdadero')
     {
       return true;
     }else{
@@ -103,17 +100,61 @@ export class PreguntaCrearComponent implements OnInit {
     return pos;
   }
   
-  Limpiar()
+  LimpiarPregunta()
   {
-    this.form.patchValue(
+    this.formPregunta.patchValue(
       {
         id: '',
-        descripcion: '',
+        pregunta: '',
+      }
+    );
+    }
+  LimpiarRespuesta()
+  {
+    this.formRespuesta.patchValue(
+      {
         idPregunta: '',
         respuesta: '',
         esCorrecta:''
       }
     );
   }
+  buscarRespuesta(array: Respuesta[], descripcionRespuesta: string):number
+  {
+    var i=0;
+    var pos:number=-1;
+    var flag = 0;
+    for(i=0; i<array.length && flag == 0; i++)
+    {
+      if(array[i].descripcionRespuesta.toString()===descripcionRespuesta)
+      {
+        pos=i;
+      }
+        
+    }
+    return pos;
+  }
+  buscarPregunta2(id:any):number
+  {
+    var i=0;
+    var pos:number=-1;
+    var flag = 0;
+    for(i=0; i<this.data.listaDePreguntas.length && flag == 0; i++)
+    {
+      if(this.data.listaDePreguntas[i].idPregunta===id)
+      {
+        pos=i;
+      }
+        
+    }
+    return pos;
+  }
+  eliminarRespuesta(array: Respuesta[], desc:string)
+  {
+    const posRespuesta = this.buscarRespuesta(array, desc);
+    array.splice(posRespuesta,1);
+    this.data.listaDePreguntas = this.lista;
+  }
+
 
 }
