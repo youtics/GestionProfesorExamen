@@ -71,7 +71,7 @@
                             <th>{{ pregunta.descripcionPregunta }}</th>
                             <th style="text-align: center">
                                 <i class="far fa-pen-square fa-lg text-info" style="margin-right: 15px;"></i>
-                                <i class="far fa-trash-restore-alt fa-lg text-danger"></i>
+                                <i class="far fa-trash-restore-alt fa-lg text-danger" (click)="eliminarPregunta(pregunta.idPregunta)"></i>
                             </th>
                         </tr>
                     </thead>

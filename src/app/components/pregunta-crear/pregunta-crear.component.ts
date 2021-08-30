@@ -156,5 +156,14 @@ export class PreguntaCrearComponent implements OnInit {
     this.data.listaDePreguntas = this.lista;
   }
 
+  eliminarPregunta(id: number)
+  {
+    const posPregunta = this.buscarPregunta2(id);
+    console.log("pos de IdPregunta: "+ posPregunta);
+    this.data.listaDePreguntas.splice(posPregunta,1);
+    this.data.listaDePreguntas = this.lista;
+
+  }
+
 
 }
