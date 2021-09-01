@@ -3,15 +3,7 @@
         <div class="card-body text-white bg-success">
             <span class="h3">Add Question and Answer</span>
             <form class="row g-3" [formGroup]="formPregunta">
-                <div class="col-md-3">
-                    <label for="inputId" class="form-label">Id</label>
-                    <div class="input-group has-validation">
-                        <input type="text" class="form-control" id="inputId" formControlName="id"></div>
-                        <div
-                            *ngIf="formPregunta.controls['id'].invalid && formPregunta.controls['id'].touched" class="alert alert-danger">Id requerid
-                        </div>
-                    </div>
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <label for="inputPregunta" class="form-label">Pregunta</label>
                     <input type="text" class="form-control" id="inputPregunta" formControlName="pregunta">
                     <div
@@ -21,23 +13,23 @@
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary" 
                         (click) = "agregarPregunta()" [disabled] = "formPregunta.invalid" >Add Question</button>
+                    <button type="submit" class="btn btn-warning" 
+                        (click) = "modificarPregunta()" [disabled] = "formPregunta.invalid" >Update Question</button>
                 </div>
             </form>
             <br>
             <form class="row g-3" [formGroup]="formRespuesta">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="inputState" class="form-label">Ids de Pregunta</label>
                     <select id="inputState" class="form-select" formControlName="idPregunta">
                         <option selected>Seleccionar</option>
-                        <option *ngFor="let idPregunta of data.listaDePreguntas" >{{idPregunta.idPregunta}}</option>
+                        <option *ngFor="let idPregunta of data.listaDePreguntas; let i = index" >{{idPregunta.idPregunta}}</option>
                     </select>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <label for="inputRespuesta" class="form-label">Respuesta</label>
                     <input type="text" class="form-control" id="inputRespuesta" formControlName="respuesta">
-                    <div
-                        *ngIf="formRespuesta.controls['respuesta'].invalid && formRespuesta.controls['respuesta'].touched" class="alert alert-danger">Respuesta requerid
-                    </div>
+                    
                 </div>
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">True or False</label>
@@ -53,6 +45,10 @@
                 <button type="submit" class="btn btn-danger"                
                     (click)="agregarRespuesta()" [disabled] = "formRespuesta.invalid"
                 >Add Answer</button>
+                <button type="submit" class="btn btn-warning"                
+                     [disabled] = "formRespuesta.invalid"
+                     (click)="modificarRespuesta()"
+                >Update Answer</button>
                 </div>
             </form>
         </div>
@@ -70,7 +66,7 @@
                             <th>{{ pregunta.idPregunta }}</th>
                             <th>{{ pregunta.descripcionPregunta }}</th>
                             <th style="text-align: center">
-                                <i class="far fa-pen-square fa-lg text-info" style="margin-right: 15px;"></i>
+                                <i class="far fa-pen-square fa-lg text-info" style="margin-right: 15px;" (click)="completarBusquedaPregunta(pregunta.idPregunta)"></i>
                                 <i class="far fa-trash-restore-alt fa-lg text-danger" (click)="eliminarPregunta(pregunta.idPregunta)"></i>
                             </th>
                         </tr>
@@ -81,7 +77,7 @@
                         <td>{{ respuesta.esCorrecta }}</td>
                         <td style="text-align: center">
                             <i (click)="eliminarRespuesta(data.listaDePreguntas[i].respuestas, respuesta.descripcionRespuesta)" class="fas fa-trash-restore-alt fa-lg text-danger" style="margin-right: 15px;"></i>
-                            <i class="fas fa-pen-square text-info fa-lg"></i>
+                            <i class="fas fa-pen-square text-info fa-lg" (click)="completarBusquedaRespuesta(data.listaDePreguntas[i].respuestas, respuesta.descripcionRespuesta)"></i>
                         </td>
                     </tr>
                     </tbody>

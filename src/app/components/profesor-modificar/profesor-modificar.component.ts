@@ -84,4 +84,17 @@ export class ProfesorModificarComponent implements OnInit {
     this.listaModificar.splice(pos, 1, emp);
   }
 
+  modificar2()
+  {
+    const emp:Profesor = {
+      Nombre: this.form.get('nombre')?.value,
+      Apellido: this.form.get('apellido')?.value,
+      Legajo: this.form.get('legajo')?.value,
+      Materia: this.form.get('materia')?.value,
+      Sexo: this.form.get('sexo')?.value
+    }
+    var pos = this.buscarElementoPos(emp.Legajo);
+    this.listaModificar.splice(pos, 1, emp);
+  }
+
 }
