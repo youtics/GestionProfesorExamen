@@ -61,30 +61,37 @@ export class PreguntaCrearComponent implements OnInit {
   retornarNuevoIdRespuesta(id: number)
   {
     var i=0;
-    var idNuevo:number=-1;
+    var z=0;
+    var idMayor:number=-1;
     var flag = 0;
     for(i=0; i<this.data.listaDePreguntas.length && flag == 0; i++)
     {
       if(this.data.listaDePreguntas[i].idPregunta==id)
       {
-        idNuevo = this.data.listaDePreguntas[i].respuestas.length + 1;
-        flag=1;
+        for(z=0; z < this.data.listaDePreguntas[i].respuestas.length; z++)
+        {
+          if(this.data.listaDePreguntas[i].respuestas[z].idRespuesta > idMayor)
+          {
+            idMayor = this.data.listaDePreguntas[i].respuestas[z].idRespuesta;
+          }
+        }
       }
         
     }
-    return idNuevo;
+    return idMayor;
   }
+
   agregarRespuesta()
   {
     const posicion = this.buscarPregunta(this.formRespuesta.get('idPregunta')?.value);
     const respuesta:Respuesta = {
       idPregunta: this.formRespuesta.get('idPregunta')?.value,
-      idRespuesta: this.retornarNuevoIdRespuesta(this.formRespuesta.get('idPregunta')?.value),
+      idRespuesta: this.retornarNuevoIdRespuesta(this.formRespuesta.get('idPregunta')?.value) + 1,
       descripcionRespuesta: this.formRespuesta.get('respuesta')?.value,
       esCorrecta: this.VoF()
     }
-    console.log("IdRespuesta ", respuesta.idRespuesta);
-    console.log("posicion" + posicion);
+    /* console.log("IdRespuesta ", respuesta.idRespuesta);
+    console.log("posicion" + posicion); */
     this.data.listaDePreguntas[posicion].respuestas.push(respuesta);
     this.lista = this.data.listaDePreguntas;
     this.LimpiarRespuesta();
