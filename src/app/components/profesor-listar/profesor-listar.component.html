@@ -15,7 +15,7 @@
               </tr>
             </thead>
             <tbody>
-              <ng-container *ngFor="let profesor of dataService.listaDeServicio">
+              <ng-container *ngFor="let profesor of dataService.listaDeServicio | slice: (page-1) * pageSize : page * pageSize">
                 <tr>
                   <td>{{ profesor.Legajo }}</td>
                   <td>{{ profesor.Nombre }}</td>
@@ -30,6 +30,11 @@
               </ng-container>
             </tbody>
           </table>
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="dataService.listaDeServicio.length">
+          </ngb-pagination>
         </div>
     </div>
 </div>

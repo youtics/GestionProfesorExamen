@@ -3,11 +3,13 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-      <mat-toolbar>Menu</mat-toolbar>
+      <mat-toolbar style="color: aliceblue;">Acciones</mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item routerLink="/add-teacher">Profesores</a>
-        <a mat-list-item routerLink="/pregunta-crear">Cuestionarios</a>
-        <a mat-list-item href="#">Link 3</a>
+        <a mat-list-item routerLink="/add-teacher" style="color: aliceblue;">Add Profesores</a>
+        <a mat-list-item routerLink="/profesor-listar" style="color: aliceblue;">List Profesores</a>
+        <a mat-list-item routerLink="/profesor-delete" style="color: aliceblue;">Delete Profesores</a>
+        <a mat-list-item routerLink="/profesor-update" style="color: aliceblue;">Update Profesores</a>
+        <a mat-list-item routerLink="/pregunta-crear" style="color: aliceblue;">Cuestionarios</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

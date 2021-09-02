@@ -10,7 +10,8 @@ import { DataService } from 'src/app/services/data.service';
 export class ProfesorListarComponent implements OnInit {
 
   lista:Profesor[] = [];
- 
+  public page = 1;
+  public pageSize = 10;
 
   constructor(public dataService: DataService) { 
   }

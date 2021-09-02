@@ -9,7 +9,30 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   listaDeServicio: Profesor[] = [
-    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'}
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:1, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
+    {Legajo:100, Apellido:'Chaldu', Nombre:'Gabriel', Sexo: 'Masculino', Materia:'Programacion I'},
   ];
   listaDePreguntas:Pregunta[]=[
     {idPregunta:1, descripcionPregunta:'Como te llamas?', respuestas:[new Respuesta('Gabriel',true,1,1),new Respuesta('Alejandro', false,1,2)]},

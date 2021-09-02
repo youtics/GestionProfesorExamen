@@ -90,8 +90,6 @@ export class PreguntaCrearComponent implements OnInit {
       descripcionRespuesta: this.formRespuesta.get('respuesta')?.value,
       esCorrecta: this.VoF()
     }
-    /* console.log("IdRespuesta ", respuesta.idRespuesta);
-    console.log("posicion" + posicion); */
     this.data.listaDePreguntas[posicion].respuestas.push(respuesta);
     this.lista = this.data.listaDePreguntas;
     this.LimpiarRespuesta();

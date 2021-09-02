@@ -21,7 +21,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { PreguntaCrearComponent } from './components/pregunta-crear/pregunta-crear.component'; 
+import { PreguntaCrearComponent } from './components/pregunta-crear/pregunta-crear.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PreguntaCrearComponent } from './components/pregunta-crear/pregunta-cre
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
