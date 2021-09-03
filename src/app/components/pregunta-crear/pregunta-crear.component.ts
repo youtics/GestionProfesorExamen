@@ -1,3 +1,6 @@
+import { dbPregunta } from './../../models/dbPregunta';
+import { Cuestionario } from './../../models/cuestionario';
+import { CuestionarioService } from './../../services/cuestionario.service';
 import { Respuesta } from './../../models/respuesta';
 import { Pregunta } from './../../models/pregunta';
 import { DataService } from 'src/app/services/data.service';
@@ -16,7 +19,7 @@ export class PreguntaCrearComponent implements OnInit {
   lista:Pregunta[]=[];
   idRespuestaActual: number=-1;
   idPreguntaActual: number=-1;
-  constructor(private fb: FormBuilder, public data: DataService) { 
+  constructor(private fb: FormBuilder, public data: DataService, private _cuestionarioService: CuestionarioService) { 
     this.formPregunta = this.fb.group({
       pregunta:['', Validators.required],
     })
@@ -37,6 +40,7 @@ export class PreguntaCrearComponent implements OnInit {
     const arregloRespuesta: any [] = [];
     const pregunta:Pregunta = {
       idPregunta: this.buscarElIdMasAlto()+1,
+      idCuestionario:1,
       descripcionPregunta: this.formPregunta.get('pregunta')?.value,
       respuestas: arregloRespuesta
     }
@@ -262,6 +266,7 @@ export class PreguntaCrearComponent implements OnInit {
   {
     const preg:Pregunta = {
       idPregunta: this.idPreguntaActual,
+      idCuestionario:1,
       descripcionPregunta: this.formPregunta.get('pregunta')?.value,
       respuestas: this.buscarPregunta4(this.idPreguntaActual),
     }
@@ -350,4 +355,41 @@ export class PreguntaCrearComponent implements OnInit {
     this.idRespuestaActual = respuesta.idRespuesta;
     console.log(this.idRespuestaActual);
   }
+  recorrerYGuardarTodo()
+  {
+    var i=0;
+    var z=0;
+    if(this.data.listaDePreguntas.length>0){
+      
+      const cuestionario: Cuestionario = {
+        idCuestionario:1,
+        profesor:'Gabriel'
+      }
+      this._cuestionarioService.guardarModeloCuestionario(cuestionario);
+      for(i=0; i<this.data.listaDePreguntas.length; i++)
+      {
+          const pregunta: dbPregunta = {
+            idCuestionario:1,
+            idPregunta: this.data.listaDePreguntas[i].idPregunta,
+            descripcionPregunta: this.data.listaDePreguntas[i].descripcionPregunta
+          }
+
+        this._cuestionarioService.guardarPregunta(pregunta);
+          for(z=0; z<this.data.listaDePreguntas[i].respuestas.length; z++)
+          {
+            const resp: Respuesta = {
+              idRespuesta: this.data.listaDePreguntas[i].respuestas[z].idRespuesta,
+              idPregunta: this.data.listaDePreguntas[i].respuestas[z].idPregunta,
+              descripcionRespuesta: this.data.listaDePreguntas[i].respuestas[z].descripcionRespuesta,
+              esCorrecta: this.data.listaDePreguntas[i].respuestas[z].esCorrecta
+            }
+            this._cuestionarioService.guardarRespuesta(resp).then( ()=> 
+            {console.log('Cuestionario creado con exito...')},
+              error =>{console.log("Error del ORTOOOOOOOOO " + error);}  
+            );
+          } 
+      }
+    }  
+  }
+
 }

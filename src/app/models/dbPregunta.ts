@@ -1,18 +1,13 @@
-import { Respuesta } from './respuesta';
-export class Pregunta
-{
+export class dbPregunta{
     idPregunta:number;
     idCuestionario: number;
     descripcionPregunta:string;
-    respuestas: Respuesta[];
     //puntos: number;
 
-    constructor(desc:string, resp:Respuesta[], id:number, idCuestionario: number)
+    constructor(desc:string, id:number, idCuestionario: number)
     {
         this.descripcionPregunta=desc;
-        this.respuestas = resp;
         this.idPregunta=id;
         this.idCuestionario=idCuestionario;
     }
-
 }
