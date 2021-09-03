@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "cuestionariovirtual-7a723": {
+      "hosting": {
+        "abmestudiante": [
+          "cuestionariovirtual-7a723"
+        ]
+      }
+    }
+  }
+}
